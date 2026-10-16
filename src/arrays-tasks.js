@@ -525,8 +525,22 @@ function shiftArray(/* arr, n */) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const copy = [...arr];
+  const dictionary = {
+    zero: 0,
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+  };
+
+  return copy.sort((a, b) => dictionary[a] - dictionary[b]);
 }
 
 /**
@@ -548,8 +562,20 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const copy = [...arr];
+  if (copy.length % 2) {
+    const centerIndex = Math.floor(copy.length / 2);
+    const centerItem = copy[centerIndex];
+    const head = copy.slice(0, centerIndex);
+    const tail = copy.slice(centerIndex + 1, copy.length);
+    tail.push(centerItem);
+    return tail.concat(head);
+  }
+  const centerIndex = Math.floor(copy.length / 2);
+  const head = copy.slice(0, centerIndex);
+  const tail = copy.slice(centerIndex, copy.length);
+  return tail.concat(head);
 }
 
 module.exports = {
